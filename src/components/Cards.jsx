@@ -1,6 +1,6 @@
 import React from 'react';
 
-// IMPORTAÇÃO DE IMAGENS
+// IMPORTAÇÃO DE IMAGENS (FRENTE)
 import cosmosSentinel from '../assets/cosmos-sentinel.png';
 import nebuladragon from '../assets/nebuladragon.png';
 import cyberbladePaladin from '../assets/cyberblade-paladin.png';
@@ -9,7 +9,10 @@ import archmage from '../assets/archmage.png';
 import aegisKnight from '../assets/aegis-knight.png';
 import stormbringer from '../assets/stormbringer.png';
 
-// Mapeamento de nome de arquivo para a variável importada
+// IMPORTAÇÃO DO FUNDO DA CARTA (VERSO)
+import fundoCarta from '../assets/fundo-carta.jpg';
+
+// Mapeamento de nome de arquivo para variável importada
 const cardImages = {
   'cosmos-sentinel.png': cosmosSentinel,
   'nebuladragon.png': nebuladragon,
@@ -28,10 +31,12 @@ function Card({ data, isSelected, isFlipped, onClick }) {
     <span key={index} className="estrela"></span>
   ));
   const imageSrc = cardImages[imagem];
+
   return (
     <li>
       <div className={cardClasses} onClick={onClick}>
         <div className={`card-inner ${isFlipped ? 'flipped' : ''}`}>
+          {/* Frente da carta */}
           <div className="card-front">
             <h2 className="nome">{nome}</h2>
             <div className="nivel-carta">{estrelas}</div>
@@ -44,7 +49,16 @@ function Card({ data, isSelected, isFlipped, onClick }) {
               </div>
             </div>
           </div>
-          <div className="card-back"></div>
+
+          {/* Verso da carta */}
+          <div
+            className="card-back"
+            style={{
+              backgroundImage: `url(${fundoCarta})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          ></div>
         </div>
       </div>
     </li>
