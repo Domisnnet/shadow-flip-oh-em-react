@@ -1,4 +1,6 @@
-/* 🌐 Estrutura Global */
+/* 🌐 =====================
+   Estrutura Global
+======================== */
 html,
 body {
   height: 100%;
@@ -10,10 +12,7 @@ body {
 
 body {
   font-family: "Yugioh", serif;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../assets/fundo-site.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../assets/fundo-site.jpg) center/cover no-repeat;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -21,22 +20,28 @@ body {
   justify-content: center;
 }
 
-/* 🧩 Componentes e Blocos */
+/* 🧩 =====================
+   Estrutura e Layout
+======================== */
 .cabecalho {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
 .cabecalho .titulo {
-  color: #ffffff;
+  color: #fff;
+  font-size: 42px;
+  padding-top: 20px;
+}
+
+.slider {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
-  font-size: 42px;
+  gap: 130px;
+  padding-bottom: 50px;
 }
 
 .lista-personagens {
@@ -47,14 +52,9 @@ body {
   padding: 12px;
 }
 
-.slider {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 50px;
-  gap: 130px;
-}
-
+/* 🎴 =====================
+   Cartões e Conteúdo
+======================== */
 .cartao {
   opacity: 0;
   display: flex;
@@ -64,6 +64,8 @@ body {
   position: absolute;
   border-radius: 8px;
   background-repeat: no-repeat;
+  background-size: cover;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .cartao.selecionado {
@@ -72,7 +74,8 @@ body {
 }
 
 .cartao.virar {
-  transform: rotatez(90deg);
+  transform: rotateZ(90deg);
+  transform-origin: center;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -83,18 +86,8 @@ body {
   background: radial-gradient(circle, #f3e2c8, #e4cfa5, #c4a57a);
   border: 2px solid #a67c52;
   border-radius: 8px;
-  color: #000000;
+  color: #000;
   margin-bottom: 5px;
-}
-
-.cartao .estrela {
-  width: 20px;
-  height: 20px;
-  background-image: url(../assets/nivel-carta.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  display: inline-block;
-  padding-bottom: 5px;
 }
 
 .cartao .nivel-carta {
@@ -104,24 +97,38 @@ body {
   gap: 5px;
 }
 
+.cartao .estrela {
+  width: 20px;
+  height: 20px;
+  background: url(../assets/nivel-carta.png) center/contain no-repeat;
+  display: inline-block;
+}
+
 .cartao .imagem-carta {
   max-width: 260px;
   align-self: center;
   border-radius: 8px;
   display: block;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px 0;
 }
 
 .cartao .informacoes {
   border-radius: 8px;
   max-width: 300px;
-  color: #000000;
+  color: #000;
   background: radial-gradient(circle, #f3e2c8, #e4cfa5, #c4a57a);
   border: 2px solid #a67c52;
   text-align: left;
   line-height: 1.5;
   padding: 5px;
+}
+
+.cartao .informacoes .descricao {
+  border-bottom: 1px solid #000;
+  padding: 10px;
+  max-height: 95px;
+  overflow-y: auto;
+  font-size: 13px;
 }
 
 .cartao .informacoes .informacoes-ataque {
@@ -135,15 +142,9 @@ body {
   font-size: 13px;
 }
 
-.cartao .informacoes .descricao {
-  border-bottom: 1px solid #000000;
-  padding: 10px;
-  max-height: 95px;
-  overflow-y: scroll;
-  font-size: 13px;
-}
-
-/* 🎨 Botões e Ícones */
+/* 🎨 =====================
+   Botões e Ícones
+======================== */
 .btn-seta {
   background-color: rgba(0, 240, 255, 0.2);
   width: 70px;
@@ -152,12 +153,12 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 0;
+  border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 0 0 3px rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease-in-out;
   position: relative;
   z-index: 100;
 }
@@ -168,10 +169,9 @@ body {
 }
 
 .icon-seta {
-  color: white;
+  color: #fff;
   width: 40px;
   height: 40px;
-  z-index: 2;
   transition: color 0.3s ease-in-out;
 }
 
@@ -183,58 +183,41 @@ body {
   transform: rotateY(180deg);
 }
 
-/* 🖼️ Fundos e Temas */
-.fundo-1 {
-  background: url(../assets/fundo-1.jpg) no-repeat;
+/* 🖼️ =====================
+   Fundos e Temas
+======================== */
+[class^="fundo-"] {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-.fundo-2 {
-  background: url(../assets/fundo-2.jpg) no-repeat;
-}
-
-.fundo-3 {
-  background: url(../assets/fundo-3.jpg) no-repeat;
-}
-
-.fundo-4 {
-  background: url(../assets/fundo-4.jpg) no-repeat;
-}
-
-.fundo-5 {
-  background: url(../assets/fundo-5.jpg) no-repeat;
-}
-
-.fundo-6 {
-  background: url(../assets/fundo-6.jpg) no-repeat;
-}
-
-.fundo-7 {
-  background: url(../assets/fundo-7.jpg) no-repeat;
-}
+.fundo-1 { background-image: url(../assets/fundo-1.jpg); }
+.fundo-2 { background-image: url(../assets/fundo-2.jpg); }
+.fundo-3 { background-image: url(../assets/fundo-3.jpg); }
+.fundo-4 { background-image: url(../assets/fundo-4.jpg); }
+.fundo-5 { background-image: url(../assets/fundo-5.jpg); }
+.fundo-6 { background-image: url(../assets/fundo-6.jpg); }
+.fundo-7 { background-image: url(../assets/fundo-7.jpg); }
 
 .carta-virada {
   display: none;
   border-radius: 8px;
 }
 
-/* 🧼 Utilitários e Scrollbar */
+/* 🧼 =====================
+   Utilitários e Scrollbar
+======================== */
 .esconder {
-  display: none;
+  display: none !important;
 }
 
-body::-webkit-scrollbar-track {
-  background-color: #c08057;
+/* Scrollbar personalizada apenas para conteúdo scrollável */
+.descricao::-webkit-scrollbar {
+  width: 8px;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
+.descricao::-webkit-scrollbar-thumb {
   background: #c08057;
   border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #c08057;
 }
