@@ -1,0 +1,56 @@
+@media(max-width: 768px) {
+    body {
+        background-position: center;
+        padding: 0 15px;
+    }
+
+    .slider {
+        gap: 10px;
+    }
+}
+
+@media(max-width: 496px) {
+    .lista-personagens {
+        width: 250px;
+    }
+
+    .imagem-carta {
+        width: 100%;
+    }
+
+    .slider {
+        position: relative;
+        min-height: 80vh; 
+    }
+
+    .btn-seta {
+        position: absolute;
+        top: auto; 
+        transform: none; 
+        bottom: 20px; 
+        z-index: 100;
+    }
+
+    .btn-seta.btn-voltar {
+        left: 25%; 
+        right: auto; 
+    }
+
+    .btn-seta.btn-avancar {
+        left: auto; 
+        right: 25%; 
+    }
+}
+
+@media(max-width: 375px) {
+    body {
+        justify-content: start;
+        padding-top: 10px;
+        gap: 10px;
+    }
+
+    .cabecalho {
+        font-size: 18px; 
+        margin-top: 5px;
+    }
+}
