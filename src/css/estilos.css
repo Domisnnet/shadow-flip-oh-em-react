@@ -63,6 +63,7 @@ body {
   gap: 5px;
   position: absolute;
   border-radius: 8px;
+  background-repeat: no-repeat;
 }
 
 .cartao.selecionado {
@@ -83,6 +84,7 @@ body {
   border: 2px solid #a67c52;
   border-radius: 8px;
   color: #000000;
+  margin-bottom: 5px;
 }
 
 .cartao .estrela {
@@ -92,6 +94,7 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   display: inline-block;
+  padding-bottom: 5px;
 }
 
 .cartao .nivel-carta {
@@ -106,6 +109,8 @@ body {
   align-self: center;
   border-radius: 8px;
   display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .cartao .informacoes {
