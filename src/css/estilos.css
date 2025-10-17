@@ -1,4 +1,6 @@
-/* 🌐 Estrutura Global */
+/* 🌐 =====================
+   Estrutura Global
+======================== */
 html,
 body {
   height: 100%;
@@ -10,139 +12,110 @@ body {
 
 body {
   font-family: "Yugioh", serif;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url(../assets/fundo-site.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../assets/fundo-site.jpg) center/cover no-repeat;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   align-items: center;
   justify-content: center;
 }
 
-/* Estilização de Cabeçalho */
+/* 🧩 =====================
+   Estrutura e Layout
+======================== */
 .cabecalho {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
 .cabecalho .titulo {
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 30px;
-  padding-bottom: 20px;
+  color: #fff;
   font-size: 42px;
+  padding-top: 20px;
 }
 
-/* 🧩 Slider e Navegação */
 .slider {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 50px;
   gap: 130px;
+  padding-bottom: 50px;
 }
 
 .lista-personagens {
   width: 300px;
   height: 500px;
+  border-radius: 10px;
   position: relative;
-}
-
-/* 🃏 Cartas */
-.cartao {
-  width: 300px;
-  height: 500px;
-  perspective: 1000px;
-  border-radius: 8px;
-}
-
-.card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease-in-out;
-}
-
-.card-inner::before {
-  content: none;
-  overflow: hidden;
-}
-
-.card-inner.flipped {
-  transform: rotateY(180deg);
-}
-
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 8px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-/* Frente da carta */
-.card-front {
-  background: radial-gradient(circle, #f3e2c8, #e4cfa5, #c4a57a);
-  border: 2px solid #a67c52;
   padding: 12px;
-  z-index: 2;
+}
+
+/* 🎴 =====================
+   Cartões e Conteúdo
+======================== */
+.cartao {
+  opacity: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  padding: 12px 12px 10px;
+  gap: 5px;
+  position: absolute;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.card-front::before {
-  content: none;
-  overflow: hidden;
+.cartao.selecionado {
+  opacity: 1;
+  z-index: 1;
 }
 
-.card-front .nome {
+.cartao.virar {
+  transform: rotateZ(90deg);
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.cartao .nome {
   font-size: 13px;
   padding: 5px;
   text-transform: uppercase;
   background: radial-gradient(circle, #f3e2c8, #e4cfa5, #c4a57a);
   border: 2px solid #a67c52;
   border-radius: 8px;
-  color: #000000;
+  color: #000;
+  margin-bottom: 5px;
 }
 
-.card-front .nivel-carta {
+.cartao .nivel-carta {
   display: flex;
   justify-content: flex-end;
   margin-right: 10px;
   gap: 5px;
 }
 
-.card-front .estrela {
+.cartao .estrela {
   width: 20px;
   height: 20px;
-  background-image: url(../assets/nivel-carta.png);
-  background-size: contain;
-  background-repeat: no-repeat;
+  background: url(../assets/nivel-carta.png) center/contain no-repeat;
   display: inline-block;
 }
 
-.card-front .imagem-carta {
+.cartao .imagem-carta {
   max-width: 260px;
   align-self: center;
   border-radius: 8px;
   display: block;
+  padding: 5px 0;
 }
 
-.card-front .informacoes {
+.cartao .informacoes {
   border-radius: 8px;
-  color: #000000;
+  max-width: 300px;
+  color: #000;
   background: radial-gradient(circle, #f3e2c8, #e4cfa5, #c4a57a);
   border: 2px solid #a67c52;
   text-align: left;
@@ -150,36 +123,28 @@ body {
   padding: 5px;
 }
 
-.card-front .descricao {
-  border-bottom: 1px solid #000000;
+.cartao .informacoes .descricao {
+  border-bottom: 1px solid #000;
   padding: 10px;
   max-height: 95px;
-  overflow-y: scroll;
+  overflow-y: auto;
   font-size: 13px;
 }
 
-.card-front .informacoes-ataque {
+.cartao .informacoes .informacoes-ataque {
   display: flex;
   justify-content: flex-end;
   gap: 5px;
   padding: 10px;
 }
 
-.card-front .informacoes-ataque span {
+.cartao .informacoes .informacoes-ataque span {
   font-size: 13px;
 }
 
-/* Verso da carta */
-.card-back {
-  transform: rotateY(180deg);
-  background: url(../assets/fundo-carta.jpg) no-repeat;
-  background-size: 100% 100%; 
-  background-position: center;
-  transform: rotateY(180deg);
-  transform: rotateY(180deg) rotate(90deg);
-}
-
-/* 🎨 Botões */
+/* 🎨 =====================
+   Botões e Ícones
+======================== */
 .btn-seta {
   background-color: rgba(0, 240, 255, 0.2);
   width: 70px;
@@ -188,29 +153,25 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 0;
+  border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
-    color 0.3s ease-in-out;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2),
-    inset 0 0 0 3px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 0 0 3px rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease-in-out;
   position: relative;
   z-index: 100;
 }
 
 .btn-seta:hover {
   background-color: rgba(0, 240, 255, 0.7);
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.8),
-    inset 0 0 0 3px rgba(255, 255, 255, 1);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), inset 0 0 0 3px rgba(255, 255, 255, 1);
 }
 
 .icon-seta {
-  color: white;
+  color: #fff;
   width: 40px;
   height: 40px;
-  z-index: 2;
   transition: color 0.3s ease-in-out;
 }
 
@@ -222,49 +183,41 @@ body {
   transform: rotateY(180deg);
 }
 
-/* 🖼️ Fundos temáticos */
-.fundo-1 {
-  background: url(../assets/fundo-1.jpg) no-repeat;
+/* 🖼️ =====================
+   Fundos e Temas
+======================== */
+[class^="fundo-"] {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-.fundo-2 {
-  background: url(../assets/fundo-2.jpg) no-repeat;
+.fundo-1 { background-image: url(../assets/fundo-1.jpg); }
+.fundo-2 { background-image: url(../assets/fundo-2.jpg); }
+.fundo-3 { background-image: url(../assets/fundo-3.jpg); }
+.fundo-4 { background-image: url(../assets/fundo-4.jpg); }
+.fundo-5 { background-image: url(../assets/fundo-5.jpg); }
+.fundo-6 { background-image: url(../assets/fundo-6.jpg); }
+.fundo-7 { background-image: url(../assets/fundo-7.jpg); }
+
+.carta-virada {
+  display: none;
+  border-radius: 8px;
 }
 
-.fundo-3 {
-  background: url(../assets/fundo-3.jpg) no-repeat;
+/* 🧼 =====================
+   Utilitários e Scrollbar
+======================== */
+.esconder {
+  display: none !important;
 }
 
-.fundo-4 {
-  background: url(../assets/fundo-4.jpg) no-repeat;
+/* Scrollbar personalizada apenas para conteúdo scrollável */
+.descricao::-webkit-scrollbar {
+  width: 8px;
 }
 
-.fundo-5 {
-  background: url(../assets/fundo-5.jpg) no-repeat;
-}
-
-.fundo-6 {
-  background: url(../assets/fundo-6.jpg) no-repeat;
-}
-
-.fundo-7 {
-  background: url(../assets/fundo-7.jpg) no-repeat;
-}
-
-/* 🧼 Scrollbar */
-body::-webkit-scrollbar-track {
-  background-color: #c08057;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
+.descricao::-webkit-scrollbar-thumb {
   background: #c08057;
   border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #c08057;
 }
