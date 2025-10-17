@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-// IMPORTAÇÃO DE IMAGENS (FRENTE)
+// IMPORTAÇÃO DE IMAGENS
 import cosmosSentinel from '../assets/cosmos-sentinel.png';
 import nebuladragon from '../assets/nebuladragon.png';
 import cyberbladePaladin from '../assets/cyberblade-paladin.png';
@@ -8,11 +8,8 @@ import mechadragon from '../assets/mechadragon.png';
 import archmage from '../assets/archmage.png';
 import aegisKnight from '../assets/aegis-knight.png';
 import stormbringer from '../assets/stormbringer.png';
+import fundoCarta from '../assets/fundo-carta.jpg'; // ⬅️ adiciona o verso da carta
 
-// IMPORTAÇÃO DO FUNDO DA CARTA (VERSO)
-import fundoCarta from '../assets/fundo-carta.jpg';
-
-// Mapeamento de nome de arquivo para variável importada
 const cardImages = {
   'cosmos-sentinel.png': cosmosSentinel,
   'nebuladragon.png': nebuladragon,
@@ -23,20 +20,26 @@ const cardImages = {
   'stormbringer.png': stormbringer,
 };
 
-function Card({ data, isSelected, isFlipped, onClick }) {
+function Card({ data, isSelected }) {
+  const [isFlipped, setIsFlipped] = useState(false);
   const { nome, fundo, nivel, imagem, alt, descricao, atk, def } = data;
   const cardClasses = `cartao ${fundo} ${isSelected ? 'selecionado' : ''}`;
+
   const totalEstrelas = nivel;
   const estrelas = Array.from({ length: totalEstrelas }).map((_, index) => (
     <span key={index} className="estrela"></span>
   ));
+
   const imageSrc = cardImages[imagem];
+
+  // 🔄 alterna o estado de flip ao clicar
+  const handleFlip = () => setIsFlipped(!isFlipped);
 
   return (
     <li>
-      <div className={cardClasses} onClick={onClick}>
+      <div className={cardClasses} onClick={handleFlip}>
         <div className={`card-inner ${isFlipped ? 'flipped' : ''}`}>
-          {/* Frente da carta */}
+          {/* FRENTE */}
           <div className="card-front">
             <h2 className="nome">{nome}</h2>
             <div className="nivel-carta">{estrelas}</div>
@@ -50,14 +53,10 @@ function Card({ data, isSelected, isFlipped, onClick }) {
             </div>
           </div>
 
-          {/* Verso da carta */}
+          {/* VERSO */}
           <div
             className="card-back"
-            style={{
-              backgroundImage: `url(${fundoCarta})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
+            style={{ backgroundImage: `url(${fundoCarta})` }}
           ></div>
         </div>
       </div>
